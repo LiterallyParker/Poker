@@ -14,7 +14,7 @@ class Deck {
     constructor() {
         this.cards = []
         let suits = ["spades","hearts","diamonds","clubs"]
-        let ranks = ["ace",1,2,3,4,5,6,7,8,9,"jack2","queen2","zking2"]
+        let ranks = ["zAce",1,2,3,4,5,6,7,8,9,"jack2","queen2","yKing2"]
         for(let i = 0; i < suits.length; i++) {
             for(let j = 0; j < ranks.length; j++) {
                 this.cards.push(new Card(suits[i],ranks[j]))
@@ -94,6 +94,7 @@ class Hand {
                         for(let l = 0; l < this.cards.length; l++) {
                             if(this.compareCard(this.cards[i],this.cards[j]) && this.compareCard(this.cards[k],this.cards[l]) && this.compareCard(this.cards[i],this.cards[k]) && this.compareCard(this.cards[i],this.cards[l]) && this.compareCard(this.cards[j],this.cards[k]) && this.compareCard(this.cards[j],this.cards[l]) && this.compareRank(this.cards[i],this.cards[j]) && this.compareRank(this.cards[k],this.cards[l]) && this.compareRank(this.cards[l],this.cards[j]) == false) {
                                 this.score.pair2 = true
+                                this.score.pair = false
                                 break
                             }
                         }
@@ -109,6 +110,7 @@ class Hand {
                     for(let k = 0; k < this.cards.length; k++) {
                         if(this.compareCard(this.cards[i],this.cards[j]) && this.compareCard(this.cards[j],this.cards[k]) && this.compareCard(this.cards[i],this.cards[k]) && this.compareRank(this.cards[i],this.cards[k]) && this.compareRank(this.cards[i],this.cards[j]) && this.compareRank(this.cards[j],this.cards[k])) {
                             this.score.threeOfAKind = true
+                            this.score.pair = false
                             break
                         }
                     }
@@ -122,8 +124,26 @@ class Hand {
             arr.push(this.cards[i].rank)
         }
         arr.sort()
+        let counter = 0
         for(let i = 0; i < arr.length; i++) {
-            
+            if(arr[i] == "jack2") {
+                if(arr[i+1] == "queen2") {
+                    counter += 1
+                }
+            } else if(arr[i]=="queen2") {
+                if(arr[i+1] == "yKing2") {
+                    counter += 1
+                }
+            } else if(arr[i] == "yKing2") {
+                if(arr[i+1] == "zAce") {
+                    counter += 1
+                }
+            } else if (arr[i] == arr[i+1]+1) {
+                counter += 1
+            }
+        if(counter >= 4) {
+            this.score.straight = true
+        }
         }
     }
 }
@@ -153,8 +173,10 @@ class Poker {
                     break
                 }
             }
-            if(item.rank == "zking2") {
+            if(item.rank == "yKing2") {
                 return "king2";
+            } else if(item.rank == "zAce") {
+                return "ace"
             } else {
                 return item.rank
             }
@@ -163,6 +185,18 @@ class Poker {
         for(let i = 0; i < this.hand.cards.length; i++) {
             img = document.getElementById(`card${i}`)
             img.src = `cards/${rankCorrector(this.hand.cards[i])}_of_${this.hand.cards[i].suit}.png`
+        }
+        let output = document.getElementsByClassName("output")[0]
+        if(this.hand.score.pair) {
+            output.innerHTML = "Pair!"
+        } else if (this.hand.score.pair2) {
+            output.innerHTML = "Two Pair!"
+        } else if (this.hand.score.threeOfAKind) {
+            output.innerHTML = "Three of a Kind!"
+        } else if (this.hand.score.straight) {
+            output.innerHTML = "Straight!"
+        } else {
+            output.innerHTML = "Nothin'"
         }
     }
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 * {
     margin: 0px;
@@ -6,26 +6,34 @@
 }
 html {
     background-color: forestgreen;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 5px;
 }
 
-.title {
-    font-family: 'Protest Strike', sans-serif;
+.header {
+    font-size: 250%;
     color: white;
+    -webkit-text-stroke: 1.2px black;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 2%;
     background-color: rgb(23, 95, 23);
-    margin: 20% 35% 0%;
-    border: solid black;
-    text-align: center;
-    padding: 20px;
+    border-bottom: solid black;
 }
 
 .cards {
+    margin: 12% 0% 2%;
     display: flex;
     justify-content: center;
 }
 
 .cards img {
-    margin: 40px 0px;
-    padding: 20px;
+    width: 10%;
+    padding: 2%;
     background-color: rgb(23, 95, 23);
     border: solid;
 }
@@ -36,10 +44,26 @@ html {
 }
 
 .input .button {
-    font-family: 'Protest Strike', sans-serif;
+    font-size: 150%;
     background-color: rgb(23, 95, 23);
     color: white;
     border-style: solid;
+    border-width: 3px;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 1% 2%;
+}
+
+.output {
+    font-size: 150%;
+    font-weight: 100;
+    margin: 2% 30%;
+    color: white;
+    padding: 2%;
+    background-color: rgb(23, 95, 23);
+    display: flex;
+    justify-content: center;
+    border: solid black;
+}
+.output p {
+    text-align: center;
 }

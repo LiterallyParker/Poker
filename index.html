@@ -7,21 +7,21 @@
 <body>
     <div class="page">
         
-        <div class="title">
+        <div class="header">
             <h1>Chrome Poker</h1>
         </div>
         <div class="cards">
-            <img id="card0" src="cards/2_of_clubs.png" width="100px">
-            <img id="card1" src="cards/2_of_clubs.png" width="100px">
-            <img id="card2" src="cards/2_of_clubs.png" width="100px">
-            <img id="card3" src="cards/2_of_clubs.png" width="100px">
-            <img id="card4" src="cards/2_of_clubs.png" width="100px" onclick="">
+            <img id="card0" src="cards/2_of_clubs.png">
+            <img id="card1" src="cards/2_of_clubs.png">
+            <img id="card2" src="cards/2_of_clubs.png">
+            <img id="card3" src="cards/2_of_clubs.png">
+            <img id="card4" src="cards/2_of_clubs.png">
         </div>
         <div class="input">
-            <input class="button" type="button" value="Deal" onclick="for(let i = 0; i < 20; i++){buttonFnc()}">
+            <input class="button" type="button" value="Deal" onclick="buttonFnc()">
         </div>
-        <div>
-            <h2></h2>
+        <div class="output">
+            <p>Press "Deal" to draw 5 new cards</p>
         </div>
     </div>
     <script src="script.js"></script>
